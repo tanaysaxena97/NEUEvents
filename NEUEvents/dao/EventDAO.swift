@@ -20,6 +20,7 @@ class EventDAO {
     
     func saveEvent(_ event: Event, images: [UIImage] = []) {
         // TODO: delete previous object if exists along with previous images.
+        
         var imagePaths: [String] = []
         for image in images {
             let imagePath = "images/\(UUID().uuidString).png"
@@ -31,6 +32,15 @@ class EventDAO {
         event.organiserEmail = EventDAO.getSignedUserEmail() ?? event.organiserEmail
         event.imagePaths = imagePaths
         dbRef.child("events/\(event.id)").setValue(event.getStorableObj())
+    }
+    
+    func deleteEventWithId(_ eventId: String) {
+        getEventById(eventId) { dataSnapshot in
+            for path in (dataSnapshot.value as! [String: Any])["imagePaths"] as! [String] {
+                ImageDAO().deleteImage(path)
+            }
+            self.dbRef.child("events/\(eventId)").removeValue()
+        }
     }
     
     func getEventById(_ id: String, onDataRetrieve : @escaping (DataSnapshot) -> Void) {

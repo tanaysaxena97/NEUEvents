@@ -110,19 +110,6 @@ func connectedToNetwork() -> Bool {
     return (isReachable && !needsConnection)
 }
 
-//func getJsonViaRest(_ path: String, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Void {
-//    if !connectedToNetwork() {
-//        showErrorAlert("network not available")
-//        return
-//    }
-//    let sessionConfig: URLSessionConfiguration = URLSessionConfiguration.default
-//    sessionConfig.allowsCellularAccess = true
-//    sessionConfig.httpAdditionalHeaders = ["Accept": "application/json"]
-//    let session = URLSession(configuration: sessionConfig)
-//    let url = URL(string: Constants.REST_URL.rawValue + path)!
-//    session.dataTask(with: url, completionHandler: completionHandler).resume()
-//}
-
 let imageDct = ["xbox": UIImage(named: "xbox")!,
                 "ps5": UIImage(named: "ps5")!,
                 "monitor": UIImage(named: "monitor")!,

@@ -43,6 +43,21 @@ class MyEventsTableVC: UITableViewController {
         self.performSegue(withIdentifier: "ShowEventSegue", sender: nil)
     }
     
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            showConfirmationAlert(self, "Are you sure you want to delete?", cancelAction: {_ in}, okAction: {[tableView] _ in
+                tableView.beginUpdates()
+                self.onRowDeletion(indexPath)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.endUpdates()
+            })
+        }
+    }
+    
     @IBAction func onSignOut(_ sender: UIBarButtonItem) {
         showConfirmationAlert(self, "Are you sure you want to signout?", cancelAction: {_ in}, okAction: {_ in
             signout()
@@ -61,6 +76,12 @@ class MyEventsTableVC: UITableViewController {
             self.tableView.reloadData()
         }
     }
+    func onRowDeletion(_ indexPath: IndexPath) {
+        let event = dataSource[indexPath.row]
+        EventDAO().deleteEventWithId(event.id)
+        self.dataSource.remove(at: indexPath.row)
+    }
+    
 }
 
 class ShowEventSegue: UIStoryboardSegue {

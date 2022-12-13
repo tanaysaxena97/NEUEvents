@@ -18,18 +18,22 @@ class ImageDAO {
         storageRef = Storage.storage().reference()
     }
     
-    func getImageFromPath(_ imagePath: String, completionHandler: @escaping (_ image: UIImage?) -> Void) {
-//        if(imageCache.objectForKey(imagePath) != nil) {
-//            completionHandler(imageCache.objectForKey(imagePath))
-//        }
-            let image = storageRef.child(imagePath)
-            image.getData(maxSize: 50 * 1024) { data, error in
-                if let data = data {
-                    completionHandler(UIImage(data: data))
-                    // add image to cache
-//                    imageCache.setValue(UIImage(data: data), forKey: imagePath)
-                }
+    func deleteImage(_ imagePath: String) {
+        // TODO: handle errors
+        storageRef.child(imagePath).delete { error in
+            if error != nil {
+                print("---------------------------------------------------")
+                print(error)
             }
-        
+        }
+    }
+    
+    func getImageFromPath(_ imagePath: String, completionHandler: @escaping (_ image: UIImage?) -> Void) {
+        let image = storageRef.child(imagePath)
+        image.getData(maxSize: 50 * 1024) { data, error in
+            if let data = data {
+                completionHandler(UIImage(data: data))
+            }
+        }
     }
 }
