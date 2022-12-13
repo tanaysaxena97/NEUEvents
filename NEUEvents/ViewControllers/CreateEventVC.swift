@@ -29,13 +29,13 @@ class CreateEventVC: UIViewController, PHPickerViewControllerDelegate, UICollect
         super.viewDidLoad()
         // image collection
         
-//        imageCollectionView.delegate = self
-//        imageCollectionView.dataSource = self
-//
-//        pickerConfig.filter = .images
-//        pickerConfig.selectionLimit = 4
-//
-//        eventStartDateInputView.addTarget(self, action: #selector(handleEvnetStartDateChanged), for: .valueChanged)
+        imageCollectionView.delegate = self
+        imageCollectionView.dataSource = self
+
+        pickerConfig.filter = .images
+        pickerConfig.selectionLimit = 4
+
+        eventStartDateInputView.addTarget(self, action: #selector(handleEvnetStartDateChanged), for: .valueChanged)
     }
     
     override func viewDidAppear(_ animated: Bool) {
