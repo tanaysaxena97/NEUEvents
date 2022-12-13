@@ -45,6 +45,15 @@ class CreateEventVC: UIViewController, PHPickerViewControllerDelegate, UICollect
             disableButton(pickImagesButton)
             nameInputView.isUserInteractionEnabled = false
             descriptionInputView.isUserInteractionEnabled = false
+            eventStartDateInputView.isUserInteractionEnabled = false
+        }
+    }
+    
+    func setEvent(_ eventId: String) {
+        EventDAO().getEventById(eventId) { dataSnapshot in
+            let event = Event(dataSnapshot.value as! [String: Any])
+            self.nameInputView.text = event.name
+            self.descriptionInputView.text = event.description
         }
     }
     

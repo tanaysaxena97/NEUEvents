@@ -40,14 +40,7 @@ class MyEventsTableVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let event: Event = dataSource[indexPath.row]
-        if event.organiserEmail == EventDAO.getSignedUserEmail() {
-            let vc = CreateEventVC()
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-        else {
-            // TODO: readonly view
-        }
+        self.performSegue(withIdentifier: "ShowEventSegue", sender: nil)
     }
     
     @IBAction func onSignOut(_ sender: UIBarButtonItem) {
@@ -70,8 +63,17 @@ class MyEventsTableVC: UITableViewController {
     }
 }
 
-class showEventSegue: UIStoryboardSegue {
-    override func perform(_ aSelector: Selector!) -> Unmanaged<AnyObject>! {
-        <#code#>
+class ShowEventSegue: UIStoryboardSegue {
+    override func perform() {
+        let src = self.source
+        let dest = self.destination
+        let destFvc = dest as! CreateEventVC
+        let srcLvc = (src as! MyEventsTableVC)
+        let idx = srcLvc.tableView.indexPathForSelectedRow?.row ?? 0
+        destFvc.setEvent(srcLvc.dataSource[idx].id)
+        if srcLvc.dataSource[idx].organiserEmail != EventDAO.getSignedUserEmail() {
+            destFvc.readOnly = true
+        }
+        src.navigationController?.pushViewController(dest, animated: true)
     }
 }
