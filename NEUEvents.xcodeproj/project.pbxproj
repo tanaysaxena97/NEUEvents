@@ -23,6 +23,7 @@
 		A6611B32292F3226008CE69D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6611B30292F3226008CE69D /* LaunchScreen.storyboard */; };
 		A6611B3A292F3471008CE69D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A6611B39292F3471008CE69D /* GoogleService-Info.plist */; };
 		A698ED5629470204004D9421 /* ImageDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A698ED5529470204004D9421 /* ImageDAO.swift */; };
+		A698ED5829494CEC004D9421 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A698ED5729494CEC004D9421 /* ProfileVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		A6611B33292F3226008CE69D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6611B39292F3471008CE69D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A698ED5529470204004D9421 /* ImageDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDAO.swift; sourceTree = "<group>"; };
+		A698ED5729494CEC004D9421 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		C8DAB76EB144B92D4B5FA49C /* Pods-NEUEvents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NEUEvents.release.xcconfig"; path = "Target Support Files/Pods-NEUEvents/Pods-NEUEvents.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,6 +95,7 @@
 				A61639D7293008C5002C4E0A /* HomeVC.swift */,
 				A61639D929300DB1002C4E0A /* MyEventsTableVC.swift */,
 				A61639DB29301997002C4E0A /* CreateEventVC.swift */,
+				A698ED5729494CEC004D9421 /* ProfileVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A698ED5829494CEC004D9421 /* ProfileVC.swift in Sources */,
 				A698ED5629470204004D9421 /* ImageDAO.swift in Sources */,
 				A61639DC29301997002C4E0A /* CreateEventVC.swift in Sources */,
 				A61639E42931B1DE002C4E0A /* EventDAO.swift in Sources */,

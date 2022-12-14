@@ -54,6 +54,12 @@ class CreateEventVC: UIViewController, PHPickerViewControllerDelegate, UICollect
             let event = Event(dataSnapshot.value as! [String: Any])
             self.nameInputView.text = event.name
             self.descriptionInputView.text = event.description
+            for path in event.imagePaths {
+                ImageDAO().getImageFromPath(path) { image in
+                    self.images.append(image!)
+                    self.imageCollectionView.reloadData()
+                }
+            }
         }
     }
     

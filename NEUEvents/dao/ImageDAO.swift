@@ -30,7 +30,7 @@ class ImageDAO {
     
     func getImageFromPath(_ imagePath: String, completionHandler: @escaping (_ image: UIImage?) -> Void) {
         let image = storageRef.child(imagePath)
-        image.getData(maxSize: 50 * 1024) { data, error in
+        image.getData(maxSize: 2 * 1024 * 1024) { data, error in
             if let data = data {
                 completionHandler(UIImage(data: data))
             }

@@ -25,7 +25,7 @@ class EventDAO {
         for image in images {
             let imagePath = "images/\(UUID().uuidString).png"
             imagePaths.append(imagePath)
-            let data = getDataFromImage(resizeImage(image))
+            let data = getDataFromImage(resizeImage(image, size: CGSize(width: 852, height: 480)))
             let fileRef = storageRef.child(imagePath)
             fileRef.putData(data) { metadata, error in}
         }

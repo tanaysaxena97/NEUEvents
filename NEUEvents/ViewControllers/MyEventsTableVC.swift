@@ -15,11 +15,12 @@ class MyEventsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "eventCell")
-        populateEventsAReoadTableView()
+//        populateEventsAReoadTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        populateEventsAReoadTableView()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -59,19 +60,18 @@ class MyEventsTableVC: UITableViewController {
     }
     
     @IBAction func onSignOut(_ sender: UIBarButtonItem) {
-        showConfirmationAlert(self, "Are you sure you want to signout?", cancelAction: {_ in}, okAction: {_ in
-            signout()
-            self.navigationController?.popViewController(animated: true)
-        })
+        
     }
     // MARK: - Table view data source
     
     func populateEventsAReoadTableView() {
         eventDAO.getAllEvents { data in
             self.dataSource.removeAll()
-            for (_, v) in data.value! as! [String: Any] {
-                let event = Event(v as! [String: Any])
-                self.dataSource.append(event)
+            if !(data.value is NSNull) {
+                for (_, v) in data.value! as! [String: Any] {
+                    let event = Event(v as! [String: Any])
+                    self.dataSource.append(event)
+                }
             }
             self.tableView.reloadData()
         }

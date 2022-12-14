@@ -15,14 +15,14 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="LoginVC" customModule="NEUEvents" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="863"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gJx-aV-dc1">
-                                <rect key="frame" x="111" y="326.33333333333337" width="208" height="279.33333333333337"/>
+                                <rect key="frame" x="111" y="297.66666666666663" width="208" height="267.66666666666663"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDg-K3-GOS" customClass="GIDSignInButton">
-                                        <rect key="frame" x="0.0" y="0.0" width="208" height="279.33333333333331"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="208" height="267.66666666666669"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <connections>
                                             <action selector="onSignInTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZlK-RS-bln"/>
@@ -61,11 +61,53 @@
                     <connections>
                         <segue destination="NS3-UK-UnG" kind="relationship" relationship="viewControllers" id="dgn-bn-YDi"/>
                         <segue destination="mJ1-Mb-W8a" kind="relationship" relationship="viewControllers" id="2iB-Ee-uyz"/>
+                        <segue destination="PgI-ML-xyy" kind="relationship" relationship="viewControllers" id="5Tj-ka-yDh"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T1r-Em-Ghd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1826" y="134"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="tkC-8a-W6f">
+            <objects>
+                <viewController id="PgI-ML-xyy" customClass="ProfileVC" customModule="NEUEvents" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lYp-GX-tsI">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0a4-Kr-BSF">
+                                <rect key="frame" x="173.66666666666666" y="437" width="82.666666666666657" height="34.333333333333314"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kqh-H7-74c">
+                                        <rect key="frame" x="0.0" y="0.0" width="82.666666666666671" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Signout"/>
+                                        <connections>
+                                            <action selector="signoutButtonClicked:" destination="PgI-ML-xyy" eventType="touchUpInside" id="UYo-m7-pIA"/>
+                                            <segue destination="BYZ-38-t0r" kind="show" id="KxJ-61-ZXQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Kqh-H7-74c" firstAttribute="width" secondItem="0a4-Kr-BSF" secondAttribute="width" id="Acn-SF-upw"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3pc-xz-xAn"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="0a4-Kr-BSF" firstAttribute="height" secondItem="3pc-xz-xAn" secondAttribute="height" multiplier="0.0434599" id="4uo-a1-2Wu" userLabel="Stack View.height = 1 × Safe Area.height"/>
+                            <constraint firstItem="0a4-Kr-BSF" firstAttribute="centerY" secondItem="3pc-xz-xAn" secondAttribute="centerY" id="BFl-eQ-hk5"/>
+                            <constraint firstItem="0a4-Kr-BSF" firstAttribute="centerX" secondItem="3pc-xz-xAn" secondAttribute="centerX" id="Hin-PM-xkW"/>
+                            <constraint firstItem="0a4-Kr-BSF" firstAttribute="width" secondItem="3pc-xz-xAn" secondAttribute="width" multiplier="0.192248" id="zZ6-gO-llw" userLabel="Stack View.width = 1 × Safe Area.width"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="A90-Df-iUJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U2e-i7-lE9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1864" y="1182"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="f70-fa-LQM">
