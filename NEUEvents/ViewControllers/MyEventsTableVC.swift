@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MyEventsTableVC: UITableViewController {
     var dataSource: [Event] = []
@@ -31,11 +32,16 @@ class MyEventsTableVC: UITableViewController {
         var cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath)
         let event: Event = dataSource[indexPath.row]
         cell.textLabel?.text = dataSource[indexPath.row].name
-        cell.imageView?.image = getImageFromDataForList(UIImage.init(systemName: "scope")!, size: CGSize(width: 200, height: 150))
+        cell.imageView?.image = getImageFromDataForList(UIImage.init(systemName: "target")!, size: CGSize(width: 200, height: 150))
         if event.imagePaths.count > 0 {
-            imageDAO.getImageFromPath(event.imagePaths[0]) { image in
-                cell.imageView?.image = getImageFromDataForList(image!, size: CGSize(width: 200, height: 150))
+            imageDAO.getDownloadURL(event.imagePaths[0]) { url, error in
+                if error == nil {
+                    cell.imageView?.kf.setImage(with: url)
+                }
             }
+//            imageDAO.getImageFromPath(event.imagePaths[0]) { image in
+//                cell.imageView?.image = getImageFromDataForList(image!, size: CGSize(width: 200, height: 150))
+//            }
         }
         return cell
     }
@@ -58,10 +64,7 @@ class MyEventsTableVC: UITableViewController {
             })
         }
     }
-    
-    @IBAction func onSignOut(_ sender: UIBarButtonItem) {
-        
-    }
+
     // MARK: - Table view data source
     
     func populateEventsAReoadTableView() {

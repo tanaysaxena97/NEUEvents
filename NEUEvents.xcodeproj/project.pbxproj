@@ -24,6 +24,11 @@
 		A6611B3A292F3471008CE69D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A6611B39292F3471008CE69D /* GoogleService-Info.plist */; };
 		A698ED5629470204004D9421 /* ImageDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A698ED5529470204004D9421 /* ImageDAO.swift */; };
 		A698ED5829494CEC004D9421 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A698ED5729494CEC004D9421 /* ProfileVC.swift */; };
+		A698ED5C294A8EAD004D9421 /* EBEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A698ED5B294A8EAD004D9421 /* EBEvent.swift */; };
+		A698ED5E294A8F44004D9421 /* EBEventDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A698ED5D294A8F44004D9421 /* EBEventDAO.swift */; };
+		A698ED62294A947B004D9421 /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = A698ED61294A947B004D9421 /* events.json */; };
+		A698ED64294A9E18004D9421 /* EBEventsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A698ED63294A9E18004D9421 /* EBEventsTableVC.swift */; };
+		A698ED66294AA4D0004D9421 /* EBEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A698ED65294AA4D0004D9421 /* EBEventVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +52,11 @@
 		A6611B39292F3471008CE69D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A698ED5529470204004D9421 /* ImageDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDAO.swift; sourceTree = "<group>"; };
 		A698ED5729494CEC004D9421 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		A698ED5B294A8EAD004D9421 /* EBEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EBEvent.swift; sourceTree = "<group>"; };
+		A698ED5D294A8F44004D9421 /* EBEventDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EBEventDAO.swift; sourceTree = "<group>"; };
+		A698ED61294A947B004D9421 /* events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = events.json; sourceTree = "<group>"; };
+		A698ED63294A9E18004D9421 /* EBEventsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EBEventsTableVC.swift; sourceTree = "<group>"; };
+		A698ED65294AA4D0004D9421 /* EBEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EBEventVC.swift; sourceTree = "<group>"; };
 		C8DAB76EB144B92D4B5FA49C /* Pods-NEUEvents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NEUEvents.release.xcconfig"; path = "Target Support Files/Pods-NEUEvents/Pods-NEUEvents.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				A61639D4293004BA002C4E0A /* Event.swift */,
+				A698ED5B294A8EAD004D9421 /* EBEvent.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -96,6 +107,8 @@
 				A61639D929300DB1002C4E0A /* MyEventsTableVC.swift */,
 				A61639DB29301997002C4E0A /* CreateEventVC.swift */,
 				A698ED5729494CEC004D9421 /* ProfileVC.swift */,
+				A698ED63294A9E18004D9421 /* EBEventsTableVC.swift */,
+				A698ED65294AA4D0004D9421 /* EBEventVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -113,6 +126,7 @@
 			children = (
 				A61639E32931B1DE002C4E0A /* EventDAO.swift */,
 				A698ED5529470204004D9421 /* ImageDAO.swift */,
+				A698ED5D294A8F44004D9421 /* EBEventDAO.swift */,
 			);
 			path = dao;
 			sourceTree = "<group>";
@@ -138,6 +152,7 @@
 		A6611B24292F3224008CE69D /* NEUEvents */ = {
 			isa = PBXGroup;
 			children = (
+				A698ED61294A947B004D9421 /* events.json */,
 				A61639E22931AA90002C4E0A /* dao */,
 				A61639D6293008A2002C4E0A /* ViewControllers */,
 				A61639D329300493002C4E0A /* model */,
@@ -215,6 +230,7 @@
 			files = (
 				A6611B32292F3226008CE69D /* LaunchScreen.storyboard in Resources */,
 				A6611B3A292F3471008CE69D /* GoogleService-Info.plist in Resources */,
+				A698ED62294A947B004D9421 /* events.json in Resources */,
 				A6611B2F292F3226008CE69D /* Assets.xcassets in Resources */,
 				A6611B2D292F3224008CE69D /* Main.storyboard in Resources */,
 			);
@@ -269,6 +285,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A698ED5E294A8F44004D9421 /* EBEventDAO.swift in Sources */,
+				A698ED64294A9E18004D9421 /* EBEventsTableVC.swift in Sources */,
 				A698ED5829494CEC004D9421 /* ProfileVC.swift in Sources */,
 				A698ED5629470204004D9421 /* ImageDAO.swift in Sources */,
 				A61639DC29301997002C4E0A /* CreateEventVC.swift in Sources */,
@@ -279,6 +297,8 @@
 				A61639D8293008C5002C4E0A /* HomeVC.swift in Sources */,
 				A6611B2A292F3224008CE69D /* LoginVC.swift in Sources */,
 				A6611B26292F3224008CE69D /* AppDelegate.swift in Sources */,
+				A698ED66294AA4D0004D9421 /* EBEventVC.swift in Sources */,
+				A698ED5C294A8EAD004D9421 /* EBEvent.swift in Sources */,
 				A61639DA29300DB1002C4E0A /* MyEventsTableVC.swift in Sources */,
 				A6611B28292F3224008CE69D /* SceneDelegate.swift in Sources */,
 			);

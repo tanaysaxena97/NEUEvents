@@ -109,10 +109,10 @@
             </objects>
             <point key="canvasLocation" x="1864" y="1182"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Events TableVC-->
         <scene sceneID="f70-fa-LQM">
             <objects>
-                <tableViewController id="ZAe-3M-RzD" sceneMemberID="viewController">
+                <tableViewController id="ZAe-3M-RzD" customClass="EBEventsTableVC" customModule="NEUEvents" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="0dO-fa-uTh">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -125,6 +125,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="430" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="iN1-Gi-91P" kind="custom" identifier="EBEventShowSegue" customClass="EBEventShowSegue" customModule="NEUEvents" customModuleProvider="target" id="ibk-QI-SUS"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -137,6 +140,71 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YVv-P6-DsR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5160.8695652173919" y="562.5"/>
+        </scene>
+        <!--EventVC-->
+        <scene sceneID="M7W-Rk-gBA">
+            <objects>
+                <viewController id="iN1-Gi-91P" customClass="EBEventVC" customModule="NEUEvents" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uke-Hs-AjJ">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="o3n-4M-Trm">
+                                <rect key="frame" x="0.0" y="59" width="430" height="839"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rac-Ay-RqM">
+                                        <rect key="frame" x="0.0" y="0.0" width="430" height="438"/>
+                                    </imageView>
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PQK-KV-GTf">
+                                        <rect key="frame" x="0.0" y="438" width="430" height="273"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="StartDate" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dP8-Mo-gdb">
+                                        <rect key="frame" x="0.0" y="711" width="430" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Summary" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vs5-sS-YtE">
+                                        <rect key="frame" x="0.0" y="745" width="430" height="59.666666666666629"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="59.666666666666629" id="KQx-dq-8Mr"/>
+                                        </constraints>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xbu-2Y-MGV">
+                                        <rect key="frame" x="0.0" y="804.66666666666663" width="430" height="34.333333333333371"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Buy Tickets"/>
+                                        <connections>
+                                            <action selector="onBuyTicketsTapped:" destination="iN1-Gi-91P" eventType="touchUpInside" id="594-k9-7G3"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="yE1-0v-QWT"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="o3n-4M-Trm" firstAttribute="height" secondItem="yE1-0v-QWT" secondAttribute="height" id="apd-mM-anV"/>
+                            <constraint firstItem="o3n-4M-Trm" firstAttribute="centerX" secondItem="yE1-0v-QWT" secondAttribute="centerX" id="p6K-qv-XYo"/>
+                            <constraint firstItem="o3n-4M-Trm" firstAttribute="centerY" secondItem="yE1-0v-QWT" secondAttribute="centerY" id="tdR-UC-scJ"/>
+                            <constraint firstItem="o3n-4M-Trm" firstAttribute="width" secondItem="yE1-0v-QWT" secondAttribute="width" id="wnz-9h-dlV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="eventImageView" destination="Rac-Ay-RqM" id="NFY-yE-5xN"/>
+                        <outlet property="eventNameView" destination="PQK-KV-GTf" id="TjE-wo-u5I"/>
+                        <outlet property="eventStartDateView" destination="dP8-Mo-gdb" id="FDl-Gq-hJb"/>
+                        <outlet property="eventSummaryView" destination="vs5-sS-YtE" id="Cu2-vu-zHV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dvi-2X-tJA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6118.604651162791" y="561.37339055793996"/>
         </scene>
         <!--Item-->
         <scene sceneID="LRc-el-Hwy">
@@ -184,18 +252,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="E8B-S3-hvj">
-                        <rightBarButtonItems>
-                            <barButtonItem title="add" image="plus" catalog="system" id="9Yf-eV-ybo">
-                                <connections>
-                                    <segue destination="Vuv-E4-Urz" kind="show" id="3CD-to-rFJ"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Sign out" id="cok-gY-gip">
-                                <connections>
-                                    <action selector="onSignOut:" destination="v5e-jY-OMr" id="jQp-C4-DeM"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" title="add" image="plus" catalog="system" id="9Yf-eV-ybo">
+                            <connections>
+                                <segue destination="Vuv-E4-Urz" kind="show" id="3CD-to-rFJ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iPX-Wu-4To" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

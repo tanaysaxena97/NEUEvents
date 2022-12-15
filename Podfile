@@ -12,4 +12,5 @@ target 'NEUEvents' do
   pod 'Firebase/Database'
   pod 'FirebaseFirestore'
   pod 'FirebaseStorage'
+  pod 'Kingfisher'
 end

@@ -9,6 +9,7 @@ import UIKit
 import PhotosUI
 import GoogleSignIn
 
+
 class CreateEventVC: UIViewController, PHPickerViewControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var pickerConfig = PHPickerConfiguration()

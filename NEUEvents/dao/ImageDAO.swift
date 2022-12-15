@@ -23,7 +23,7 @@ class ImageDAO {
         storageRef.child(imagePath).delete { error in
             if error != nil {
                 print("---------------------------------------------------")
-                print(error)
+                print(error ?? "")
             }
         }
     }
@@ -35,5 +35,9 @@ class ImageDAO {
                 completionHandler(UIImage(data: data))
             }
         }
+    }
+    
+    func getDownloadURL(_ fromPath: String, completionHandler: @escaping (URL?, Error?) -> Void) {
+        storageRef.child(fromPath).downloadURL(completion: completionHandler)
     }
 }
