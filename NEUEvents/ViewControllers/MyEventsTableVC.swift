@@ -9,10 +9,10 @@ import UIKit
 import Kingfisher
 
 class MyEventsTableVC: UITableViewController {
-    var dataSource: [Event] = []
+    var dataSource: [(Event, String)] = []
     let eventDAO = EventDAO()
     let imageDAO = ImageDAO()
-    
+    var sortAsc = 1
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "eventCell")
@@ -30,8 +30,8 @@ class MyEventsTableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath)
-        let event: Event = dataSource[indexPath.row]
-        cell.textLabel?.text = dataSource[indexPath.row].name
+        let event: Event = dataSource[indexPath.row].0
+        cell.textLabel?.text = dataSource[indexPath.row].0.name
         cell.imageView?.image = getImageFromDataForList(UIImage.init(systemName: "target")!, size: CGSize(width: 200, height: 150))
         if event.imagePaths.count > 0 {
             imageDAO.getDownloadURL(event.imagePaths[0]) { url, error in
@@ -73,18 +73,29 @@ class MyEventsTableVC: UITableViewController {
             if !(data.value is NSNull) {
                 for (_, v) in data.value! as! [String: Any] {
                     let event = Event(v as! [String: Any])
-                    self.dataSource.append(event)
+                    self.dataSource.append((event, event.searchString()))
                 }
             }
             self.tableView.reloadData()
         }
     }
     func onRowDeletion(_ indexPath: IndexPath) {
-        let event = dataSource[indexPath.row]
+        let event = dataSource[indexPath.row].0
         EventDAO().deleteEventWithId(event.id)
         self.dataSource.remove(at: indexPath.row)
     }
     
+    @IBAction func onSortButtonTapped(_ sender: Any) {
+        if sortAsc == 1 {
+            dataSource = dataSource.sorted(by: {getDateFromString($0.0.startTime) < getDateFromString($1.0.startTime)})
+//            {getDateFromString($0.0.startTime) < getDateFromString($1.0.startTime) }
+        }
+        else {
+            dataSource = dataSource.sorted(by: {getDateFromString($0.0.startTime) > getDateFromString($1.0.startTime)})
+        }
+        sortAsc = 1 - sortAsc
+        tableView.reloadData()
+    }
 }
 
 class ShowEventSegue: UIStoryboardSegue {
@@ -94,8 +105,8 @@ class ShowEventSegue: UIStoryboardSegue {
         let destFvc = dest as! CreateEventVC
         let srcLvc = (src as! MyEventsTableVC)
         let idx = srcLvc.tableView.indexPathForSelectedRow?.row ?? 0
-        destFvc.setEvent(srcLvc.dataSource[idx].id)
-        if srcLvc.dataSource[idx].organiserEmail != EventDAO.getSignedUserEmail() {
+        destFvc.setEvent(srcLvc.dataSource[idx].0.id)
+        if srcLvc.dataSource[idx].0.organiserEmail != EventDAO.getSignedUserEmail() {
             destFvc.readOnly = true
         }
         src.navigationController?.pushViewController(dest, animated: true)

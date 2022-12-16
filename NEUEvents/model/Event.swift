@@ -40,4 +40,8 @@ class Event: Codable {
         self.init(id: dict["id"] as! String, name: dict["name"] as! String, description: dict["description"] as! String,
                   startTime: dict["startTime"] as! String , organiserEmail: dict["organiserEmail"] as! String, imagePaths: dict["imagePaths"] as! [String])
     }
+    
+    func searchString() -> String {
+        "\(name.lowercased()) \(description.lowercased()) \(startTime)"
+    }
 }

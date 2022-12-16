@@ -10,7 +10,7 @@ import Kingfisher
 
 class EBEventsTableVC: UITableViewController {
     var dataSource: [(EBEvent, String)] = []
-    
+    var sortAsc = 1
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "EBEventCell")
@@ -48,6 +48,17 @@ class EBEventsTableVC: UITableViewController {
         for event in EBEventDAO.events!.events {
             self.dataSource.append((event, event.getSearchText()))
         }
+    }
+    @IBAction func onSortButtonTapped(_ sender: Any) {
+        let format = "yyyy-MM-dd"
+        if sortAsc == 1 {
+            dataSource = dataSource.sorted {getDateFromString($0.0.startDate, format: format) < getDateFromString($1.0.startDate, format: format) }
+        }
+        else {
+            dataSource = dataSource.sorted {getDateFromString($0.0.startDate, format: format) > getDateFromString($1.0.startDate, format: format) }
+        }
+        sortAsc = 1 - sortAsc
+        tableView.reloadData()
     }
 }
 

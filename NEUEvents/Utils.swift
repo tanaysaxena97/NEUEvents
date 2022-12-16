@@ -21,15 +21,15 @@ extension Optional where Wrapped == String {
     }
 }
 
-func getFormattedDateString(_ date: Date) -> String {
+func getFormattedDateString(_ date: Date, format: String = "MM/dd/yyyy HH:mm") -> String {
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "MM/dd/yyyy"
+    dateFormatter.dateFormat = format
     return dateFormatter.string(from: date)
 }
 
-func getDateFromString(_ stringDate: String) -> Date {
+func getDateFromString(_ stringDate: String, format: String = "MM/dd/yyyy HH:mm") -> Date {
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "MM/dd/yyyy"
+    dateFormatter.dateFormat = format
     return dateFormatter.date(from: stringDate)!
 }
 
