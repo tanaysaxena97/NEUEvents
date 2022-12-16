@@ -12,7 +12,6 @@
 		A61639D8293008C5002C4E0A /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61639D7293008C5002C4E0A /* HomeVC.swift */; };
 		A61639DA29300DB1002C4E0A /* MyEventsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61639D929300DB1002C4E0A /* MyEventsTableVC.swift */; };
 		A61639DC29301997002C4E0A /* CreateEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61639DB29301997002C4E0A /* CreateEventVC.swift */; };
-		A61639DF29316167002C4E0A /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61639DE29316167002C4E0A /* ImageCollectionViewCell.swift */; };
 		A61639E129316866002C4E0A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61639E029316866002C4E0A /* Utils.swift */; };
 		A61639E42931B1DE002C4E0A /* EventDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61639E32931B1DE002C4E0A /* EventDAO.swift */; };
 		A6611B26292F3224008CE69D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6611B25292F3224008CE69D /* AppDelegate.swift */; };
@@ -38,7 +37,6 @@
 		A61639D7293008C5002C4E0A /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		A61639D929300DB1002C4E0A /* MyEventsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsTableVC.swift; sourceTree = "<group>"; };
 		A61639DB29301997002C4E0A /* CreateEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventVC.swift; sourceTree = "<group>"; };
-		A61639DE29316167002C4E0A /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		A61639E029316866002C4E0A /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		A61639E32931B1DE002C4E0A /* EventDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDAO.swift; sourceTree = "<group>"; };
 		A6611B22292F3224008CE69D /* NEUEvents.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NEUEvents.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,7 +99,6 @@
 		A61639D6293008A2002C4E0A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				A61639DD2931613D002C4E0A /* view */,
 				A6611B29292F3224008CE69D /* LoginVC.swift */,
 				A61639D7293008C5002C4E0A /* HomeVC.swift */,
 				A61639D929300DB1002C4E0A /* MyEventsTableVC.swift */,
@@ -111,14 +108,6 @@
 				A698ED65294AA4D0004D9421 /* EBEventVC.swift */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		A61639DD2931613D002C4E0A /* view */ = {
-			isa = PBXGroup;
-			children = (
-				A61639DE29316167002C4E0A /* ImageCollectionViewCell.swift */,
-			);
-			path = view;
 			sourceTree = "<group>";
 		};
 		A61639E22931AA90002C4E0A /* dao */ = {
@@ -293,7 +282,6 @@
 				A61639E42931B1DE002C4E0A /* EventDAO.swift in Sources */,
 				A61639D5293004BA002C4E0A /* Event.swift in Sources */,
 				A61639E129316866002C4E0A /* Utils.swift in Sources */,
-				A61639DF29316167002C4E0A /* ImageCollectionViewCell.swift in Sources */,
 				A61639D8293008C5002C4E0A /* HomeVC.swift in Sources */,
 				A6611B2A292F3224008CE69D /* LoginVC.swift in Sources */,
 				A6611B26292F3224008CE69D /* AppDelegate.swift in Sources */,

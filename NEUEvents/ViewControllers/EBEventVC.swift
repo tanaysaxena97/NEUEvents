@@ -11,9 +11,10 @@ import Kingfisher
 class EBEventVC: UIViewController {
     
     @IBOutlet weak var eventImageView: UIImageView!
-    @IBOutlet weak var eventNameView: UITextField!
     @IBOutlet weak var eventStartDateView: UITextField!
     @IBOutlet weak var eventSummaryView: UITextView!
+    @IBOutlet weak var eventNameView: UITextView!
+    @IBOutlet weak var eventAddressView: UITextField!
     var event: EBEvent?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +23,8 @@ class EBEventVC: UIViewController {
             eventImageView.kf.setImage(with: URL(string: e.imageURL))
             eventNameView.text = e.name
             eventSummaryView.text = e.summary
-            eventStartDateView.text = e.startDate
+            eventStartDateView.text = "Event Date: " + e.startDate
+            eventAddressView.text = "Venue: " + e.address
         }
     }
     

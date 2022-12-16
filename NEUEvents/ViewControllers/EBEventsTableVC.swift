@@ -19,21 +19,19 @@ class EBEventsTableVC: UITableViewController {
         searchController.searchBar.placeholder = "Search"
         searchController.searchResultsUpdater = self
         self.navigationItem.searchController = searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
         self.definesPresentationContext = true
         populateData()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EBEventCell", for: indexPath)
-//        var content = cell.defaultContentConfiguration()
-//        content.text = self.dataSource[indexPath.row].name
-//        content.secondaryText = self.dataSource[indexPath.row].summary
-//        content.image = UIImage(systemName: "target")
-//        content.image?.kf.setImage(with: URL(string: self.dataSource[indexPath.row].imageURL))
-//        cell.contentConfiguration = content
         cell.textLabel?.text = self.dataSource[indexPath.row].0.name
         cell.imageView?.image = getImageFromDataForList(UIImage.init(systemName: "target")!, size: CGSize(width: 200, height: 150))
         cell.imageView?.kf.setImage(with: URL(string: self.dataSource[indexPath.row].0.imageURL))
+        cell.layoutMargins.bottom = 8
+        cell.layoutMargins.top = 8
+        
         return cell
     }
     
@@ -81,4 +79,12 @@ class EBEventShowSegue: UIStoryboardSegue {
         destFvc.setEvent(srcLvc.dataSource[idx].0)
         src.navigationController?.pushViewController(dest, animated: true)
     }
+}
+
+class CustomTableCell: UITableViewCell {
+    
+    @IBOutlet weak var customImageView: UIImageView!
+    @IBOutlet weak var venueField: UITextField!
+    @IBOutlet weak var startDateField: UITextField!
+    @IBOutlet weak var nameField: UITextField!
 }
