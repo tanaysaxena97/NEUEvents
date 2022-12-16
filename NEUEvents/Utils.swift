@@ -11,6 +11,8 @@ import GoogleSignIn
 
 //let imageCache: NSCache = NSCache<String, UIImage>()
 
+let filters = ["all", "music", "dance", "tech", "food"]
+
 extension Optional where Wrapped == String {
     func toIntOpt() -> Int? {
         return Int(self!)

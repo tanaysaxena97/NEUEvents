@@ -21,6 +21,7 @@ class EBEventsTableVC: UITableViewController {
         self.navigationItem.searchController = searchController
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.definesPresentationContext = true
+        self.navigationItem.titleView = getSegmentControl()
         populateData()
     }
     
@@ -58,6 +59,24 @@ class EBEventsTableVC: UITableViewController {
             dataSource = dataSource.sorted {getDateFromString($0.0.startDate, format: format) > getDateFromString($1.0.startDate, format: format) }
         }
         sortAsc = 1 - sortAsc
+        tableView.reloadData()
+    }
+    
+    func getSegmentControl() -> UISegmentedControl {
+        let segment = UISegmentedControl(items: filters)
+        segment.sizeToFit()
+        segment.selectedSegmentTintColor = UIColor.tintColor
+        segment.selectedSegmentIndex = 0
+        segment.addTarget(self, action: #selector(didChangeSegment), for: .valueChanged)
+        return segment
+    }
+    
+    @objc func didChangeSegment(_ sender: UISegmentedControl) {
+        let i = sender.selectedSegmentIndex
+        populateData()
+        if i > 0 {
+            dataSource = dataSource.filter({$0.1.contains(filters[i])})
+        }
         tableView.reloadData()
     }
 }

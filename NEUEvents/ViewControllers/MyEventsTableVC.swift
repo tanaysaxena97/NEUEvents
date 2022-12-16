@@ -16,7 +16,14 @@ class MyEventsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "eventCell")
-//        populateEventsAReoadTableView()
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        searchController.searchResultsUpdater = self
+        self.navigationItem.searchController = searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+        self.definesPresentationContext = true
+        self.navigationItem.titleView = getSegmentControl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,6 +104,32 @@ class MyEventsTableVC: UITableViewController {
         tableView.reloadData()
     }
     
+    func getSegmentControl() -> UISegmentedControl {
+        let segment = UISegmentedControl(items: filters)
+        segment.sizeToFit()
+        segment.selectedSegmentTintColor = UIColor.tintColor
+        segment.selectedSegmentIndex = 0
+        segment.addTarget(self, action: #selector(didChangeSegment), for: .valueChanged)
+        return segment
+    }
+    
+    @objc func didChangeSegment(_ sender: UISegmentedControl) {
+        let i = sender.selectedSegmentIndex
+        eventDAO.getAllEvents { data in
+            self.dataSource.removeAll()
+            if !(data.value is NSNull) {
+                for (_, v) in data.value! as! [String: Any] {
+                    let event = Event(v as! [String: Any])
+                    self.dataSource.append((event, event.searchString()))
+                }
+                if i > 0 {
+                    self.dataSource = self.dataSource.filter({$0.1.contains(filters[i])})
+                }
+            }
+            self.tableView.reloadData()
+        }
+    }
+    
 }
 
 class ShowEventSegue: UIStoryboardSegue {
@@ -112,4 +145,28 @@ class ShowEventSegue: UIStoryboardSegue {
         }
         src.navigationController?.pushViewController(dest, animated: true)
     }
+}
+
+extension MyEventsTableVC: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        print("Searching with: " + (searchController.searchBar.text ?? ""))
+        
+        eventDAO.getAllEvents { data in
+            self.dataSource.removeAll()
+            if !(data.value is NSNull) {
+                for (_, v) in data.value! as! [String: Any] {
+                    let event = Event(v as! [String: Any])
+                    self.dataSource.append((event, event.searchString()))
+                }
+                if var searchText = searchController.searchBar.text, searchText != "" {
+                    searchText = searchText.lowercased()
+                    print(searchText)
+                    self.dataSource = self.dataSource.filter({$0.1.contains(searchText)})
+                }
+                
+            }
+            self.tableView.reloadData()
+        }
+    }
+
 }
