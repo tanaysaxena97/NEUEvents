@@ -63,6 +63,10 @@ class MyEventsTableVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            if (dataSource[indexPath.row].0.organiserEmail != EventDAO.getSignedUserEmail()) {
+                showErrorAlert(self, "You do not have access to delete this event!!")
+                return
+            }
             showConfirmationAlert(self, "Are you sure you want to delete?", cancelAction: {_ in}, okAction: {[tableView] _ in
                 tableView.beginUpdates()
                 self.onRowDeletion(indexPath)

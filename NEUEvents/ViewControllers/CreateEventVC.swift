@@ -46,23 +46,20 @@ class CreateEventVC: UIViewController, PHPickerViewControllerDelegate, UICollect
         let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addEventToCal))
         self.navigationItem.rightBarButtonItem = addButton
         eventStartDateInputView.addTarget(self, action: #selector(handleEvnetStartDateChanged), for: .valueChanged)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         if readOnly {
             disableButton(submitButton)
             disableButton(pickImagesButton)
             nameInputView.isUserInteractionEnabled = false
-            descriptionInputView.isUserInteractionEnabled = false
+            descriptionInputView.isEditable = false
             eventStartDateInputView.isUserInteractionEnabled = false
         }
     }
-    
+  
     func setEvent(_ eventId: String) {
         EventDAO().getEventById(eventId) { dataSnapshot in
             let event = Event(dataSnapshot.value as! [String: Any])
             self.event = event
+            self.eventStartDateInputView.date = getDateFromString(self.event!.startTime)
             self.nameInputView.text = event.name
             self.descriptionInputView.text = event.description
             for path in event.imagePaths {
@@ -145,6 +142,9 @@ class CreateEventVC: UIViewController, PHPickerViewControllerDelegate, UICollect
         guard eventStartDate > Date() else {
             showErrorAlert(self, "Event start date and time cannot be before today.")
             return nil
+        }
+        if let event = self.event {
+            return Event(id: event.id,name: name, description: description, startTime: getFormattedDateString(eventStartDate), organiserEmail: "\(UUID().uuidString)@gmail.com", imagePaths: [])
         }
         return Event(id: UUID().uuidString,name: name, description: description, startTime: getFormattedDateString(eventStartDate), organiserEmail: "\(UUID().uuidString)@gmail.com", imagePaths: [])
     }
