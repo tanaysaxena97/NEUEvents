@@ -96,6 +96,7 @@ class MyEventsTableVC: UITableViewController {
         sortAsc = 1 - sortAsc
         tableView.reloadData()
     }
+    
 }
 
 class ShowEventSegue: UIStoryboardSegue {
