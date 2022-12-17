@@ -13,7 +13,8 @@ class EBEventsTableVC: UITableViewController {
     var sortAsc = 1
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "EBEventCell")
+//        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "EBEventCell")
+//        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomTableViewCell")
         let searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
@@ -26,19 +27,36 @@ class EBEventsTableVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EBEventCell", for: indexPath)
-        cell.textLabel?.text = self.dataSource[indexPath.row].0.name
-        cell.imageView?.image = getImageFromDataForList(UIImage.init(systemName: "target")!, size: CGSize(width: 200, height: 150))
-        cell.imageView?.kf.setImage(with: URL(string: self.dataSource[indexPath.row].0.imageURL))
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as! CustomTableViewCell
+//        cell.textLabel?.text = self.dataSource[indexPath.row].0.name
+        cell.descriptionView.text = self.dataSource[indexPath.row].0.getCellText()
+        cell.customImageView.layer.cornerRadius = 30
+        cell.customImageView.clipsToBounds = true
+        cell.customImageView.image = getImageFromDataForList(UIImage(named: "default")!, size: CGSize(width: 170, height: 120))
+//        cell.imageView?.image = getImageFromDataForList(UIImage.init(systemName: "target")!, size: CGSize(width: 200, height: 150))
+        DispatchQueue.main.async {
+//            cell.imageView?.kf.setImage(with: URL(string: self.dataSource[indexPath.row].0.imageURL))
+            
+            cell.customImageView!.kf.setImage(with: URL(string: self.dataSource[indexPath.row].0.imageURL), options: [], progressBlock: { receivedSize, totalSize in
+                print("\(indexPath.row + 1): \(receivedSize)/\(totalSize)")}) { result in
+                    do {
+                        let imageResult = try result.get() as RetrieveImageResult
+                        cell.customImageView?.image = resizeImage(imageResult.image, size: CGSize(width: 170, height: 120))
+                    }
+                    catch {
+                        print(error)
+                    }
+                }
+        }
         cell.layoutMargins.bottom = 8
         cell.layoutMargins.top = 8
         
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "EBEventShowSegue", sender: nil)
-    }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        self.performSegue(withIdentifier: "EBEventShowSegue", sender: nil)
+//    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         dataSource.count
@@ -111,10 +129,10 @@ class EBEventShowSegue: UIStoryboardSegue {
     }
 }
 
-class CustomTableCell: UITableViewCell {
-    
+class CustomTableViewCell: UITableViewCell {
+
     @IBOutlet weak var customImageView: UIImageView!
-    @IBOutlet weak var venueField: UITextField!
-    @IBOutlet weak var startDateField: UITextField!
-    @IBOutlet weak var nameField: UITextField!
+    
+    @IBOutlet weak var descriptionView: UITextView!
+    
 }

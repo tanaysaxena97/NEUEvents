@@ -53,6 +53,18 @@ class CreateEventVC: UIViewController, PHPickerViewControllerDelegate, UICollect
             descriptionInputView.isEditable = false
             eventStartDateInputView.isUserInteractionEnabled = false
         }
+        
+//        if let e = event {
+//            self.eventStartDateInputView.date = getDateFromString(e.startTime)
+//            self.nameInputView.text = e.name
+//            self.descriptionInputView.text = e.description
+//            for path in e.imagePaths {
+//                ImageDAO().getImageFromPath(path) { image in
+//                    self.images.append(image!)
+//                    self.imageCollectionView.reloadData()
+//                }
+//            }
+//        }
     }
   
     func setEvent(_ eventId: String) {

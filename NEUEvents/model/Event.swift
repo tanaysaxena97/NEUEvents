@@ -44,4 +44,12 @@ class Event: Codable {
     func searchString() -> String {
         "\(name.lowercased()) \(description.lowercased()) \(startTime)"
     }
+    
+    func getCellText() -> String {
+        """
+        
+        Name: \(name)
+        Date: \(startTime)
+        """
+    }
 }

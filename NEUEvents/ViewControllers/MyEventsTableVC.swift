@@ -15,7 +15,6 @@ class MyEventsTableVC: UITableViewController {
     var sortAsc = 1
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "eventCell")
         let searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
@@ -36,14 +35,27 @@ class MyEventsTableVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as! CustomTableViewCell
         let event: Event = dataSource[indexPath.row].0
-        cell.textLabel?.text = dataSource[indexPath.row].0.name
-        cell.imageView?.image = getImageFromDataForList(UIImage.init(systemName: "target")!, size: CGSize(width: 200, height: 150))
+//        cell.textLabel?.text = dataSource[indexPath.row].0.name
+        cell.descriptionView.text = event.getCellText()
+        cell.customImageView.layer.cornerRadius = 20
+        cell.customImageView.clipsToBounds = true
+        cell.customImageView?.image = getImageFromDataForList(UIImage.init(named: "default")!, size: CGSize(width: 150, height: 100))
         if event.imagePaths.count > 0 {
             imageDAO.getDownloadURL(event.imagePaths[0]) { url, error in
                 if error == nil {
-                    cell.imageView?.kf.setImage(with: url)
+                    cell.customImageView!.kf.setImage(with: url, options: [], progressBlock: { receivedSize, totalSize in
+                        print("\(indexPath.row + 1): \(receivedSize)/\(totalSize)")}) { result in
+                            do {
+                                let imageResult = try result.get() as RetrieveImageResult
+                                cell.customImageView?.image = resizeImage(imageResult.image, size: CGSize(width: 150, height: 100))
+                            }
+                            catch {
+                                print(error)
+                            }
+                        }
+//                    cell.imageView?.kf.setImage(with: url)
                 }
             }
 //            imageDAO.getImageFromPath(event.imagePaths[0]) { image in
@@ -53,8 +65,22 @@ class MyEventsTableVC: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "ShowEventSegue", sender: nil)
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        self.performSegue(withIdentifier: "EventSegue", sender: nil)
+//    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "ShowEventSegue" {
+            let vc = segue.destination as! CreateEventVC
+            let idx = self.tableView.indexPathForSelectedRow?.row ?? 0
+            vc.setEvent(self.dataSource[idx].0.id)
+            print("----------- in prepare -----------------")
+            if self.dataSource[idx].0.organiserEmail != EventDAO.getSignedUserEmail() {
+                vc.readOnly = true
+            }
+        }
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {

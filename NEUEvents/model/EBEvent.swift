@@ -29,7 +29,17 @@ class EBEvent: Codable {
     func getSearchText() -> String {
         "\(self.name.lowercased()) \(self.summary.lowercased()) \(self.startDate) \(self.address.lowercased())"
     }
+    
+    func getCellText() -> String {
+        """
+        
+        Name: \(name)
+        Date: \(startDate)
+        Venu: \(address)
+        """
+    }
 }
+
 
 class EBEvents: Codable {
     var events: [EBEvent]

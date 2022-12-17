@@ -14,6 +14,17 @@ class ProfileVC: UIViewController {
     }
     
     @IBAction func signoutButtonClicked(_ sender: Any) {
-            signout()
+        signout()
+        performSegue(withIdentifier: "LoginSegue", sender: nil)
+    }
+}
+
+class LoginSegue: UIStoryboardSegue {
+    override func perform() {
+        let src = self.source
+        let dest = self.destination
+        dest.modalPresentationStyle = .fullScreen
+        dest.modalTransitionStyle = .flipHorizontal
+        src.present(dest, animated: true)
     }
 }
