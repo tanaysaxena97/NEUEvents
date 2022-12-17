@@ -125,13 +125,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0a4-Kr-BSF">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0a4-Kr-BSF">
                                 <rect key="frame" x="8" y="67" width="414" height="774"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6v1-w3-qqZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="367"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LnG-p7-ude">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="287"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R5l-Ou-E6m">
+                                        <rect key="frame" x="0.0" y="307" width="414" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="dPD-y6-vwA"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="About"/>
+                                        <connections>
+                                            <action selector="signoutButtonClicked:" destination="PgI-ML-xyy" eventType="touchUpInside" id="HYh-VA-1ly"/>
+                                            <segue destination="gDg-Gd-1AH" kind="popoverPresentation" popoverAnchorView="R5l-Ou-E6m" id="4bV-23-nhQ">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kqh-H7-74c">
                                         <rect key="frame" x="0.0" y="367" width="414" height="40"/>
                                         <constraints>
@@ -145,7 +159,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="baT-Sb-hZL">
-                                        <rect key="frame" x="0.0" y="407" width="414" height="367"/>
+                                        <rect key="frame" x="0.0" y="427" width="414" height="347"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -168,6 +182,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U2e-i7-lE9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1864" y="1182"/>
+        </scene>
+        <!--AboutVC-->
+        <scene sceneID="eZ4-42-MPh">
+            <objects>
+                <viewController id="gDg-Gd-1AH" customClass="AboutVC" customModule="NEUEvents" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kgb-vD-nWP">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="863"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Thh-H6-wIZ">
+                                <rect key="frame" x="0.0" y="59" width="430" height="804"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <attributedString key="attributedText"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="VLj-nY-2ZL"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Thh-H6-wIZ" firstAttribute="leading" secondItem="VLj-nY-2ZL" secondAttribute="leading" id="41H-kk-R4I"/>
+                            <constraint firstItem="VLj-nY-2ZL" firstAttribute="bottom" secondItem="Thh-H6-wIZ" secondAttribute="bottom" id="4DU-S0-fCL"/>
+                            <constraint firstItem="VLj-nY-2ZL" firstAttribute="trailing" secondItem="Thh-H6-wIZ" secondAttribute="trailing" id="fpN-vd-F1D"/>
+                            <constraint firstItem="VLj-nY-2ZL" firstAttribute="top" secondItem="Thh-H6-wIZ" secondAttribute="top" id="oe0-BO-5x8"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="neR-2e-Tdc"/>
+                    <connections>
+                        <outlet property="textView" destination="Thh-H6-wIZ" id="nKZ-Jh-MmD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5ip-LB-RCO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3088" y="1203"/>
         </scene>
         <!--Events TableVC-->
         <scene sceneID="f70-fa-LQM">
@@ -438,7 +485,7 @@
                                 <rect key="frame" x="0.0" y="103" width="430" height="726"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RXn-4J-4nH">
-                                        <rect key="frame" x="8" y="8" width="414" height="186.66666666666663"/>
+                                        <rect key="frame" x="8" y="8" width="414" height="136.33333333333331"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7n7-zf-3Et">
                                             <size key="itemSize" width="128" height="128"/>
@@ -448,7 +495,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="AYz-CT-d2f" customClass="ImageCollectionViewCell" customModule="NEUEvents" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="29.333333333333332" width="128" height="127.99999999999997"/>
+                                                <rect key="frame" x="0.0" y="4.333333333333333" width="128" height="127.99999999999997"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="rvt-kS-1j0">
                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="127.99999999999997"/>
@@ -472,7 +519,7 @@
                                         </cells>
                                     </collectionView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qE4-H7-cHE">
-                                        <rect key="frame" x="8" y="214.66666666666669" width="414" height="159.66666666666669"/>
+                                        <rect key="frame" x="8" y="164.33333333333331" width="414" height="210"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Pick images"/>
                                         <connections>
